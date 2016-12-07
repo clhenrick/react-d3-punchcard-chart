@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import * as d3 from 'd3';
+import ReactDOM from 'react-dom';
+import D3Chart from './d3Chart';
+
+window.D3Chart = D3Chart;
 
 class Chart extends Component {
 	static propTypes = {
@@ -9,20 +12,39 @@ class Chart extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: null
-		}
+			data: props.data,
+			siteName: props.siteName
+		};
+		this.chart = new D3Chart("punchcard");
+		window.chart = this.chart;
+	}
+
+	componentWillMount() {
+
+	}
+
+	componentDidMount() {
+		const { siteName, data } = this.state;
+		this.chart.root = ReactDOM.findDOMNode(this);
+		this.chart.site = siteName;
+		this.chart.data = data;
+		this.chart.init();
+		this.chart.update();
+	}
+
+	shouldComponentUpdate() {
+		return false;
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { data } = nextProps;
-		if (data) {
-			d3.select('svg').datum(data);
-		}
+		const { siteName } = nextProps;
+		this.chart.site = siteName;
+		this.chart.update();
 	}
 
 	render() {
 		return (
-			<svg></svg>
+			<div className="d3-root" ref='d3Root' />
 		);
 	}
 }
