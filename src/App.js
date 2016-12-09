@@ -4,7 +4,8 @@ import './App.css';
 import DropDown from './DropDown';
 import Chart from './Chart';
 
-window.d3 = d3;
+// do this if you want to play around with d3 in the console
+// window.d3 = d3;
 
 class App extends Component {
   constructor() {
@@ -17,6 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // use d3.csv to load data async
     d3.csv('../../data/barley.csv', (err, rsp) => {
       if (err) throw err;
       // console.log(rsp);

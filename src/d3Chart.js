@@ -1,9 +1,7 @@
 import * as d3 from 'd3';
 
 class d3Chart {
-	constructor(chartType) {
-		this._chartType = chartType;
-
+	constructor() {
 		this.margin = { top: 20, right: 30, bottom: 30, left: 120 };
 		this.height = 800 - this.margin.left - this.margin.right;
 		this.width = 600 - this.margin.top - this.margin.bottom;
@@ -33,13 +31,22 @@ class d3Chart {
 		this._site = siteName;
 	}
 
-	set data(arr) {
-		this._data = arr;
+	set data(map) {
+		this._data = map;
+	}
+
+	createDatum() {
+		// returns an array of gen type objects for a given site
+		return this._data.get(this._site).values;
+	}
+
+	createGenTypes() {
+		// returns the sorted array of unique gen type names
+		return this.createDatum().map(d => d.key).sort();
 	}
 
 	init() {
-		const data = this._data.get(this._site);
-		const genTypes = data.values.map(d => d.key).sort();
+		const genTypes = this.createGenTypes();
 
 		// set up yScale with domain of unique gen values
 		this.yScale
@@ -85,8 +92,8 @@ class d3Chart {
 
 	update() {
 		const self = this;
-		const data = this._data.get(this._site);
-		const genTypes = data.values.map(d => d.key).sort();
+		const datum = this.createDatum();
+		const genTypes = this.createGenTypes();
 
 		// our transition, will occur over 750 milliseconds
 		const t = this.svg.transition().duration(750);
@@ -97,7 +104,7 @@ class d3Chart {
 		t.select("g.y.axis").call(this.yAxis);
 
 		// bind our new piece of data to our svg element
-		this.svg.datum(data.values);
+		this.svg.datum(datum);
 
 		// tell d3 we want svg groups for each of our gen categories
 		let gens = this.svg.selectAll("g.site")

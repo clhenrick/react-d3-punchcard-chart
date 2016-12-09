@@ -2,11 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import D3Chart from './d3Chart';
 
-window.D3Chart = D3Chart;
-
 class Chart extends Component {
 	static propTypes = {
-		margin: PropTypes.object
+		siteName: PropTypes.string.isRequired,
+		data: PropTypes.object
 	}
 
 	constructor(props) {
@@ -15,12 +14,8 @@ class Chart extends Component {
 			data: props.data,
 			siteName: props.siteName
 		};
-		this.chart = new D3Chart("punchcard");
-		window.chart = this.chart;
-	}
-
-	componentWillMount() {
-
+		this.chart = new D3Chart();
+		// window.chart = this.chart; // for debugging purposes, if desired
 	}
 
 	componentDidMount() {
@@ -33,6 +28,7 @@ class Chart extends Component {
 	}
 
 	shouldComponentUpdate() {
+		// let d3 control this part of the DOM
 		return false;
 	}
 
