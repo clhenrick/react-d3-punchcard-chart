@@ -1,13 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class DropDown extends Component {
-	static propTypes = {
-		siteName: PropTypes.string,
-		allSites: PropTypes.arrayOf(PropTypes.string),
-		handleChange: PropTypes.func.isRequired
-	}
+const DropDown = (props) => {
 
-	createOptions(sites) {
+	function createOptions(sites) {
 		return sites.map(site => {
 			return (
 				<option key={site} value={site}>{site}</option>
@@ -15,17 +10,21 @@ class DropDown extends Component {
 		});
 	}
 
-	render() {
-		const { siteName, allSites, handleChange } = this.props;
+	const { siteName, allSites, handleChange } = props;
 
-		return (
-			<select className={'dropdown'}
-				onChange={(e) => handleChange(e.target.value)}
-				defaultValue={siteName}>
-				{ allSites && this.createOptions(allSites) }
-			</select>
-		);
-	}
+	return (
+		<select className={'dropdown'}
+			onChange={(e) => handleChange(e.target.value)}
+			defaultValue={siteName}>
+			{ allSites && createOptions(allSites) }
+		</select>
+	);
 }
+
+DropDown.propTypes = {
+	siteName: PropTypes.string,
+	allSites: PropTypes.arrayOf(PropTypes.string),
+	handleChange: PropTypes.func.isRequired
+};
 
 export default DropDown;
