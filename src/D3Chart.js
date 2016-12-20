@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-class d3Chart {
+class D3Chart {
 	constructor() {
 		this.margin = { top: 20, right: 30, bottom: 30, left: 120 };
 		this.height = 800 - this.margin.left - this.margin.right;
@@ -161,4 +161,4 @@ class d3Chart {
 
 }
 
-export default d3Chart;
+export default D3Chart;

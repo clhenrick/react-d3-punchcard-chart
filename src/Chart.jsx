@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import D3Chart from './d3Chart';
+import D3Chart from './D3Chart';
 
 class Chart extends Component {
 	static propTypes = {
@@ -8,18 +8,14 @@ class Chart extends Component {
 		data: PropTypes.object
 	}
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			data: props.data,
-			siteName: props.siteName
-		};
+	constructor() {
+		super();
 		this.chart = new D3Chart();
 		// window.chart = this.chart; // for debugging purposes, if desired
 	}
 
 	componentDidMount() {
-		const { siteName, data } = this.state;
+		const { siteName, data } = this.props;
 		this.chart.root = ReactDOM.findDOMNode(this);
 		this.chart.site = siteName;
 		this.chart.data = data;
