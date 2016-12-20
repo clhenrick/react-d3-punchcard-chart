@@ -1,3 +1,16 @@
+# React D3 Punchcard Chart Demo
+Demonstrating one method of combining D3 with React, using a Punchcard Chart.
+
+## Background Reading:
+### React & D3:
+- *TO DO...*
+
+### ES6 Classes:
+- [MDN: *ES6 In Depth: Classes*](https://hacks.mozilla.org/2015/07/es6-in-depth-classes/)
+- [*Exploring JS 15. Classes*](http://exploringjs.com/es6/ch_classes.html)
+
+
+## Create React App Tl;DR;
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -900,13 +913,13 @@ This feature is experimental and still [has major usage issues](https://github.c
 
 ### Editor Integration
 
-If you use [Visual Studio Code](https://code.visualstudio.com), there is a [Jest extension](https://github.com/orta/vscode-jest) which works with Create React App out of the box. This provides a lot of IDE-like features while using a text editor: showing the status of a test run with potential fail messages inline, starting and stopping the watcher automatically, and offering one-click snapshot updates. 
+If you use [Visual Studio Code](https://code.visualstudio.com), there is a [Jest extension](https://github.com/orta/vscode-jest) which works with Create React App out of the box. This provides a lot of IDE-like features while using a text editor: showing the status of a test run with potential fail messages inline, starting and stopping the watcher automatically, and offering one-click snapshot updates.
 
 ![VS Code Jest Preview](https://cloud.githubusercontent.com/assets/49038/20795349/a032308a-b7c8-11e6-9b34-7eeac781003f.png)
 
 ## Developing Components in Isolation
 
-Usually, in an app, you have a lot of UI components, and each of them has many different states. 
+Usually, in an app, you have a lot of UI components, and each of them has many different states.
 For an example, a simple button component could have following states:
 
 * With a text label.
